@@ -1,0 +1,87 @@
+{
+  "folders": [
+    {
+      "name": "Core Spring Labs",
+      "path": "./lab"
+    }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.saveActions.organizeImports": true,
+    "java.format.enabled": true,
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.project.referencedLibraries": ["lib/**/*.jar"],
+    "java.import.maven.enabled": true,
+    "java.import.gradle.enabled": true,
+    "java.maven.downloadSources": true,
+    "java.maven.downloadJavadoc": true,
+    "spring-boot.ls.checkjvm": false,
+    "spring.initializr.serviceUrl": ["https://start.spring.io/"],
+    "files.exclude": {
+      "**/target": true,
+      "**/build": true,
+      "**/.gradle": true,
+      "**/.m2": true
+    },
+    "search.exclude": {
+      "**/target": true,
+      "**/build": true,
+      "**/.gradle": true,
+      "**/.m2": true
+    },
+    "files.associations": {
+      "*.yml": "yaml",
+      "*.yaml": "yaml"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "redhat.java",
+      "vscjava.vscode-java-debug",
+      "vscjava.vscode-maven",
+      "vscjava.vscode-gradle",
+      "vscjava.vscode-java-pack",
+      "vmware.vscode-spring-boot",
+      "vmware.vscode-boot-dev-pack",
+      "gruntfuggly.todo-tree"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Maven: Clean and Compile All",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": ["clean", "compile"],
+        "group": "build",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Maven: Test All",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": ["test"],
+        "group": "test",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Maven: Package",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": ["package"],
+        "group": "build",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}
