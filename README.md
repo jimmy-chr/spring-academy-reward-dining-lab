@@ -9,5 +9,3 @@ To import these labs into your IDE, import the parent pom `lab/pom.xml` as Maven
 ./mvnw compile
 
 ./mvnw test
-
-spring16 TODO-04
