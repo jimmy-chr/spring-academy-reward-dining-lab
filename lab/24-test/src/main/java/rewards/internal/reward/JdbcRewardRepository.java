@@ -9,6 +9,8 @@ import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
 
+import org.springframework.context.annotation.Profile;
+
 import javax.sql.DataSource;
 import java.sql.*;
 
@@ -17,6 +19,7 @@ import java.sql.*;
  * confirmation record.
  */
 @Repository
+@Profile("jdbc")
 public class JdbcRewardRepository implements RewardRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());

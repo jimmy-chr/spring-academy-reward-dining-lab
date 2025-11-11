@@ -12,6 +12,11 @@ import rewards.internal.restaurant.RestaurantRepository;
 
 import common.money.Percentage;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Profile;
+
+
+
 /**
  * A dummy restaurant repository implementation. Has a single restaurant
  * "Apple Bees" with a 8% benefit availability percentage that's always
@@ -22,6 +27,8 @@ import common.money.Percentage;
  * dependencies such as a Database. Simple unit tests can then verify object
  * behavior by considering the state of this stub.
  */
+@Repository
+@Profile("stub")
 public class StubRestaurantRepository implements RestaurantRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
