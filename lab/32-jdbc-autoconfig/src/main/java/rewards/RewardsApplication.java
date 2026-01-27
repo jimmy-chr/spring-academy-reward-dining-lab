@@ -46,7 +46,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @EnableConfigurationProperties(RewardsRecipientProperties.class)
 //@ConfigurationPropertiesScan
 @Import(RewardsConfig.class)
-
 public class RewardsApplication {
     static final String SQL = "SELECT count(*) FROM T_ACCOUNT";
 
