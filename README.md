@@ -9,3 +9,5 @@ To import these labs into your IDE, import the parent pom `lab/pom.xml` as Maven
 ./mvnw compile
 
 ./mvnw test
+
+./mvnw -pl 38-rest-ws spring-boot:run

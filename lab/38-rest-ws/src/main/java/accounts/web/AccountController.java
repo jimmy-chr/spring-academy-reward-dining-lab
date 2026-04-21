@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rewards.internal.account.Account;
 import rewards.internal.account.Beneficiary;
 
@@ -66,7 +67,8 @@ public class AccountController {
 	// TODO-06: Complete this method. Add annotations to:
 	// a. Respond to POST /accounts requests
     // b. Use a proper annotation for creating an Account object from the request
-	public ResponseEntity<Void> createAccount(Account newAccount) {
+	@PostMapping(value = "/accounts")
+	public ResponseEntity<Void> createAccount(@RequestBody Account newAccount) {
 		// Saving the account also sets its entity Id
 		Account account = accountManager.save(newAccount);
 
@@ -91,7 +93,11 @@ public class AccountController {
 		//     'ResponseEntity' to implement this - Use ResponseEntity.created(..)
 		// b. Refer to the POST example in the slides for more information
 
-		return null; // Return something other than null
+		return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(resourceId)
+				.toUri())
+				.build();
 	}
 
 	/**
@@ -112,14 +118,18 @@ public class AccountController {
 	// a. Respond to a POST /accounts/{accountId}/beneficiaries
 	// b. Extract a beneficiary name from the incoming request
 	// c. Indicate a "201 Created" status
-	public ResponseEntity<Void> addBeneficiary(long accountId, String beneficiaryName) {
+	@PostMapping(value = "/accounts/{accountId}/beneficiaries")
+	public ResponseEntity<Void> addBeneficiary(@PathVariable("accountId") long accountId,
+			@RequestBody String beneficiaryName) {
 		
 		// TODO-11: Create a ResponseEntity containing the location of the newly
 		// created beneficiary.
 		// a. Use accountManager's addBeneficiary method to add a beneficiary to an account
 		// b. Use the entityWithLocation method - like we did for createAccount().
-		
-		return null;  // Modify this to return something
+		accountManager.addBeneficiary(accountId, beneficiaryName);
+		Account account = accountManager.getAccount(accountId);
+		Beneficiary beneficiary = account.getBeneficiary(beneficiaryName);
+		return entityWithLocation(beneficiary.getEntityId());
 	}
 
 	/**
